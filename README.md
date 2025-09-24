@@ -1,60 +1,103 @@
-# AWS FCJ Hugo Theme Template
+# Architecting Solution on AWS
 
-This repository contains a **Hugo theme** based on the great **Grav Learn Theme**, customized for **AWS First Cloud Journey (FCJ)** student projects.  
-It can be used as a **starting template** for your static site.
+This repository contains a comprehensive workshop guide for **Architecting Solutions on AWS**, designed for AWS First Cloud Journey (FCJ) students and cloud enthusiasts.
 
-> **Note**: The content of workshop follows the documentation style from [https://learn.netlify.app/en/](https://learn.netlify.app/en/)
+> **Note**: This workshop follows best practices for AWS architecture design and implementation.
 
 ---
 
 ## 📌 Overview
 
-- **Framework**: [Hugo](https://gohugo.io/)
+- **Framework**: [Hugo](https://gohugo.io/) static site generator
 - **Theme**: Based on Grav Learn Theme
-- **Purpose**: Provide a quick-start template for FCJ students
+- **Purpose**: Learn AWS architecture patterns and implementation
+- **Level**: Intermediate to Advanced
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Fork this repository
-1. Click **Fork** at the top-right corner of this repository to copy it to your GitHub account.
-2. Follow the instructions at [https://www.youtube.com/watch?v=IlxlD-BWI88](https://www.youtube.com/watch?v=IlxlD-BWI88) to configure GitHub Action
+### Prerequisites
 
+- AWS Account with appropriate permissions
+- Basic understanding of AWS services
+- Hugo installed on your local machine
 
-### 2. Install Hugo & Make your workshop
-1. Follow the [Hugo installation guide](https://gohugo.io/installation/) for your OS.
-2. Verify installation:
+### 1. Clone this repository
+
+```bash
+git clone https://github.com/anngyn/Architecting-Solution.git
+cd Architecting-Solution
 ```
+
+### 2. Run the workshop locally
+
+1. Install Hugo following the [Hugo installation guide](https://gohugo.io/installation/)
+2. Verify installation:
+
+```bash
 hugo version
 ```
-3. Run locally
-```
-cd <your_project>
+
+3. Start the local server:
+
+```bash
 hugo server
 ```
+
 4. Open your browser and go to [http://localhost:1313](http://localhost:1313)
-5. Make edits to the workshop content according to the topic you have chosen.
+
+### 3. Workshop Content
+
+This workshop covers:
+
+- **IAM Policies and Roles** - Security best practices
+- **DynamoDB** - NoSQL database setup and streaming
+- **SQS** - Message queuing service
+- **SNS** - Notification service
+- **Lambda Functions** - Serverless computing
+- **API Gateway** - RESTful API creation
+- **Architecture Testing** - End-to-end validation
 
 ### 3. Change Author & Team Name
+
 To update author/team details, edit:
+
 ```
 layouts/partials/menu-footer.html
 ```
 
 ### 4. GitHub Actions (CI/CD)
+
 You can automate the build & deploy process with GitHub Actions to deploy to GitHub pages.
 Watch this guide for setting up GitHub Actions with Hugo:
 📺 [GitHub Actions Setup Video](https://www.youtube.com/watch?v=IlxlD-BWI88)
 
+## 🏗️ Architecture Overview
 
-### 📚 Documentation
-For more details on Hugo and theme customization:
-- Hugo Docs: [https://gohugo.io/documentation/](https://gohugo.io/documentation/)
-- Netlify Learn: [https://learn.netlify.app/en/](https://learn.netlify.app/en/)
+This workshop demonstrates a serverless architecture pattern using:
 
-Mình cũng là một người trẻ, đã và đang và sẽ luôn tham gia First Cloud Journey như ngày đầu mình tham gia, luôn muốn học hỏi những kiến thức mới, và chia sẻ. Từ chương trình này, mình học hỏi nhiều hơn, kết nối nhiều hơn. Và công việc cũng có những điều tiến triển hơn. 
-Mình biết ngoài kia đang rất khó khăn, thị trường việc làm rất cạnh tranh. Có những lúc các bạn sẽ nản lòng, nhưng hãy cố gắng và đừng bỏ cuộc nhé những chiến binh của FCJ. Mình tin là mọi người đều làm được, và đều là những chiến binh thực thụ.
-Anh Hưng, anh Hiệp, Hoàng Kha, ... và những anh chị em, bạn bè FCJ sẽ luôn bên cạnh và hỗ trợ mọi người trong khả năng cho phép.
+- **API Gateway** → **Lambda** → **DynamoDB**
+- **SQS** for decoupling and reliability
+- **SNS** for notifications and fan-out patterns
+- **DynamoDB Streams** for real-time data processing
 
-CỐ LÊN NHA <3
+## 📚 Resources
+
+- [AWS Architecture Center](https://aws.amazon.com/architecture/)
+- [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/)
+- [Hugo Documentation](https://gohugo.io/documentation/)
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+---
+
+**Happy Learning! 🚀**
+
+_Được tạo bởi AWS First Cloud Journey community_
