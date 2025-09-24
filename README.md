@@ -96,8 +96,21 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
+## 🙏 Acknowledgments
+
+We would like to express our sincere gratitude to **Sifu. Gia Hung**, **Mr. Hiep**, **Mr. Kha**, **Mr. Thien**, and all the members of the **AWS First Cloud Journey community** for creating such a dynamic, positive, and inspiring learning environment.
+
+Special thanks to everyone who has:
+
+- 🌟 Created opportunities for everyone to develop cloud computing skills
+- 🤝 Built a supportive community throughout the learning journey
+- 📚 Shared valuable knowledge and practical experience
+- 💪 Always encouraged and accompanied community members
+
+Special appreciation for the spirit of "**Keep going! ❤️**" - an endless source of motivation for all "FCJ warriors" on their cloud conquest journey.
+
 ---
 
 **Happy Learning! 🚀**
 
-_Được tạo bởi AWS First Cloud Journey community_
+_Created with ❤️ by AWS First Cloud Journey community_
