@@ -127,7 +127,9 @@ $currentNode.File }}{{ $currentFileUniqueID = .UniqueID }}{{ end }} {{with
   title="{{.Title}}"
   class="dd-item
         {{if .IsAncestor $currentNode }}parent{{end}}
-        {{if eq .File.UniqueID $currentFileUniqueID}}active{{end}}
+        {{ if .File }}
+  {{ if eq .File.UniqueID $currentFileUniqueID }}active{{ end }}
+{{ end }}
         {{if .Params.alwaysopen}}parent{{end}}
         "
 >
