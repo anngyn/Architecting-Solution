@@ -1,5 +1,5 @@
 ---
-title: "Tạo Lambda Function và Thiết lập Triggers"
+title: "Tạo Lambda Function để đọc từ SQS và ghi vào DynamoDB"
 weight: 6.1
 chapter: false
 pre: " <b> 6.1 </b> "

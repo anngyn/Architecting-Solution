@@ -1,96 +1,43 @@
 ---
-title: "Tạo Lambda Function và Thiết lập Triggers"
-weight: 6.1
+title: "Tạo SNS Topic và Thiết lập Subscriptions"
+weight: 5
 chapter: false
-pre: " <b> 6.1 </b> "
+pre: " <b> 5. </b> "
 ---
 
-ℹ️ **Thông tin:** Trong tác vụ này, bạn sẽ tạo một **Lambda function** để đọc các message từ **SQS queue** và ghi bản ghi đơn hàng vào **DynamoDB table**.
-
----
-
-### Tạo Lambda Function với role Lambda-SQS-DynamoDB
-
-1. Trong ô tìm kiếm của **AWS Management Console**, nhập **Lambda** và từ danh sách chọn **Lambda**.  
-![image](/images/6-CreateLambdaFunction/01-findlambda.png)  
-2. Chọn **Create function** và cấu hình như sau:  
-   - **Function option:** Author from scratch  
-   - **Function name:** `POC-Lambda-1`  
-   - **Runtime:** Python 3.9  
-![image](/images/6-CreateLambdaFunction/02-configlambda.png)  
-
-   - **Change default execution role:** Use an existing role  
-   - **Existing role:** `Lambda-SQS-DynamoDB`  
-3. Chọn **Create function**.  
-
-![image](/images/6-CreateLambdaFunction/03-createlambda.png)  
+ℹ️ **Thông tin:** Trong tác vụ này, bạn sẽ tạo một **SNS topic** và thiết lập các **subscriptions**.  
+Amazon SNS điều phối và quản lý việc phân phối hoặc gửi tin nhắn đến các endpoint hoặc client đăng ký nhận.
 
 ---
 
-### Thiết lập Amazon SQS làm trigger để gọi Lambda function
+### Tạo Topic trong Notification Service
 
-1. Nếu cần, mở rộng phần **Function overview**.  
-2. Chọn **Add trigger**.  
-![image](/images/6-CreateLambdaFunction/04-trigger.png)  
-3. Với **Trigger configuration**, nhập **SQS** và chọn dịch vụ từ danh sách.  
-4. Với **SQS queue**, chọn `POC-Queue`.  
-5. Thêm trigger bằng cách chọn **Add**.  
-![image](/images/6-CreateLambdaFunction/05-addtrigger.png)  
-
----
-
-### Thêm và triển khai mã Lambda function
-
-1. Trên trang **POC-Lambda-1**, trong tab **Code**, thay thế mã mặc định bằng đoạn sau:  
-
-    ```python
-    import boto3, uuid
-
-    client = boto3.resource('dynamodb')
-    table = client.Table("orders")
-
-    def lambda_handler(event, context):
-        for record in event['Records']:
-            print("test")
-            payload = record["body"]
-            print(str(payload))
-            table.put_item(Item= {
-                'orderID': str(uuid.uuid4()),
-                'order': payload
-            })
-    ```
-
-2. Chọn **Deploy**.  
-![image](/images/6-CreateLambdaFunction/06-CODE.png)  
-
-ℹ️ **Lưu ý:** Lambda function sẽ thực thi đoạn code bạn chỉ định khi trigger được kích hoạt.  
-AWS Lambda tự động quản lý tài nguyên tính toán như bộ nhớ, CPU và mạng.
+1. Trong **AWS Management Console**, tìm kiếm **SNS** và chọn **Simple Notification Service**.  
+![image](/images/5-CreateSNSTopic/01-sns.png)  
+2. Trên thẻ **Create topic**, nhập `POC-Topic` và chọn **Next step**.  
+![image](/images/5-CreateSNSTopic/02-sns.png)  
+3. Trong phần **Details**, giữ nguyên loại topic **Standard** và chọn **Create topic**.  
+4. Trên trang **POC-Topic**, sao chép **ARN** của topic vừa tạo và lưu lại để tham chiếu sau.  
+   - Bạn sẽ cần ARN này ở các bước tiếp theo của bài tập.  
 
 ---
 
-### Kiểm thử Lambda Function POC-Lambda-1
+### Đăng ký Nhận Email Notifications
 
-1. Trong tab **Test**, tạo một sự kiện mới với cấu hình sau:  
-   - **Event name:** `POC-Lambda-Test-1`  
-   - **Template (Optional):** SQS  
-2. Template SQS sẽ xuất hiện trong trường **Event JSON**.  
-3. Lưu thay đổi và chọn **Test**.  
-![image](/images/6-CreateLambdaFunction/07-savetest.png)  
-4. Sau khi function chạy thành công, thanh thông báo sẽ hiển thị:  
-   **“Execution result: succeeded”**.  
-   Điều này xác nhận rằng Lambda function đã gửi test message **“Hello from SQS!”** từ template SQS đến DynamoDB table.  
-![image](/images/6-CreateLambdaFunction/08-success.png)  
+1. Trên tab **Subscriptions**, chọn **Create subscription**.  
+![image](/images/5-CreateSNSTopic/03-sns.png)  
+2. Với **Topic ARN**, xác minh rằng hộp nhập chứa ARN của `POC-Topic`.  
+3. Với **Protocol**, chọn **Email**.  
+4. Với **Endpoint**, nhập địa chỉ email của bạn.  
+5. Chọn **Create subscription**.  
+![image](/images/5-CreateSNSTopic/04-sns.png)  
+6. Một email xác nhận sẽ được gửi đến địa chỉ email bạn đã nhập.  
+7. Sau khi nhận được email xác nhận, hãy bấm **Confirm subscription**.  
+   - ⚠️ Nếu không nhận được email trong vài phút, hãy kiểm tra thư mục **Spam**.  
 
----
-
-### Xác minh kết quả Lambda function trong DynamoDB
-
-1. Trong **AWS Management Console**, nhập **DynamoDB** và chọn **DynamoDB** từ danh sách.  
-2. Trong bảng điều hướng, chọn **Explore items**.  
-3. Chọn bảng **orders**.  
-4. Trong **Items returned**, bảng `orders` hiển thị bản ghi chứa **“Hello from SQS!”** được ghi bởi Lambda function test.  
-![image](/images/6-CreateLambdaFunction/09-check.png)  
+![image](/images/5-CreateSNSTopic/05-sns.png)  
+![image](/images/5-CreateSNSTopic/06-sns.png)  
 
 ---
 
-🔒 **Ghi chú bảo mật:** Khi gán function với role `Lambda-SQS-DynamoDB`, quyền truy cập được giới hạn chính xác theo nhu cầu — đọc từ **SQS** và ghi vào **DynamoDB** — tuân thủ nguyên tắc **least privilege**.
+🔒 **Ghi chú bảo mật:** Sử dụng Amazon SNS với email subscriptions cung cấp một cách đơn giản để kiểm tra và xác thực **event-driven notifications** trước khi tích hợp với các endpoint trong môi trường production.

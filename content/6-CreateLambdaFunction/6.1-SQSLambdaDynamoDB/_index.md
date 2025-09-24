@@ -1,5 +1,5 @@
 ---
-title: "Create Lambda Function and Setup Triggers"
+title: "Create Lambda Function for read message from SQS and write record to DynamoDB"
 weight: 6.1
 chapter: false
 pre: " <b> 6.1 </b> "
