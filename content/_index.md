@@ -1,21 +1,25 @@
 ---
-title : "Session Management"
-date :  "`r Sys.Date()`" 
-weight : 1 
-chapter : false
+title: "Building a Serverless Web Backend on AWS: A Proof of Concept"
+weight: 1
+chapter: false
+pre: " <b>  </b> "
 ---
-# Work with Amazon System Manager - Session Manager
 
-### Overall
- In this lab, you'll learn the basics and practice of Amazon  System Manager - Session Manager
-. Perform creating public and private instance connections. 
+# Building a Serverless Web Backend on AWS: A Proof of Concept
 
-![ConnectPrivate](/images/arc-log.png) 
+### Overview
 
-### Content
- 1. [Introduction ](1-introduce/)
- 2. [Preparation](2-prerequiste/)
- 3. [Connect to EC2 instance](3-accessibilitytoinstances/)
- 4. [Manage session logs](4-s3log/)
- 5. [Port Forwarding](5-Portfwd/)
- 6. [Clean up resources](6-cleanup/)
+This guide provides step-by-step instructions for building a proof-of-concept (PoC) for a serverless web backend solution on Amazon Web Services (AWS).
+
+![Architecture diagram for exercise 1](/images/exercise-1.png)
+
+### Workshop Modules
+
+1. [Introduction](1-Introduction/)
+2. [Create DynamoDB table](2-CreateDynamoDBTable/)
+3. [Create SQS queue](3-CreateSQSQueue/)
+4. [Create SNS topic](4-CreateSNSTopic/)
+5. [Create Lambda function](5-CreateLambdaFunction/)
+6. [Create API Gateway](6-CreateAPIGateway/)
+7. [Testing the architecture](7-TestingArchitecture/)
+8. [Cleaning up](8-CleaningUp/)
